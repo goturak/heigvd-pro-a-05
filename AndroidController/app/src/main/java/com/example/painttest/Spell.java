@@ -24,4 +24,10 @@ public class Spell {
     public Path getPath() {
         return path;
     }
+
+    public Spell getSpellSpecialization(Path p){
+        Vector2[] vs=Util.pathToVectorArray(p,2);
+        Vector2 dir=vs[vs.length-1].sub(vs[0]);
+        return new Attack(this.element,this.quality,this.path,dir);
+    }
 }

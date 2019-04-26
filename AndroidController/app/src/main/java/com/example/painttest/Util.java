@@ -12,10 +12,12 @@ public class Util {
     public static int maxTolerableDistance=45000;
     public static int maxPerfectDistance=12000;
     public static float minTolerableLength=1000;
-    public static String earthPathString="l60.856-136.018c2.589-4.994,9.17-4.994,11.759,0l55.137,124.986c2.553,4.925-0.701,11.032-5.879,11.032h-50.467c-3.732,0-6.758-3.308-6.758-7.388v-28.601\"";
+    public static String earthPathString="l60.856-136.018c2.589-4.994,9.17-4.994,11.759,0l55.137,124.986c2.553,4.925-0.701,11.032-5.879,11.032h-50.467c-3.732,0-6.758-3.308-6.758-7.388v-28.601";
     public static String waterPathString="c0,98.619-39.515,90.282-37.735,134.769c0.634,15.855,12.781,41.085,41.721,41.085c18.811,0,34.06-15.249,34.06-34.06c0-12.227-9.913-22.007-22.139-22.139c-9.881-0.107-16.541,7.504-17.175,19.871";
     public static String firePathString="c0,0-26.481-31-7.251-85.333c42.875,83.667,89.848-3.333,75.346-85.667c32.156,29.333,28.222,153.333-1.892,171";
     public static String lightningPathString="c-6.7,41.2-49.2,92.8-49.2,92.8l88.5-21c0,0-39.9,55.8-49.2,91.8";
+
+
     float prevX;
     float prevY;
 

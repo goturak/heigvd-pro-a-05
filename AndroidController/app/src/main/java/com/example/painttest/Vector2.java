@@ -25,6 +25,11 @@ public class Vector2 {
         this.y = y;
     }
 
+    public Vector2 sub(Vector2 v){
+        return new Vector2(x-v.getX(),y-v.getY());
+    }
+
+
     public void rotate(float angle){
         float theta=(float)Math.toRadians(angle);
         double cs= Math.cos(theta);

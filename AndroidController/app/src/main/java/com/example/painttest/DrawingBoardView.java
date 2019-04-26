@@ -9,11 +9,14 @@ import android.graphics.MaskFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -40,6 +43,7 @@ public class DrawingBoardView extends View {
     private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
+    private Spell currentSpell=null;
 
 
     public DrawingBoardView(Context context) {
@@ -48,6 +52,10 @@ public class DrawingBoardView extends View {
 
     public DrawingBoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
+       // SurfaceView sfvTrack = (SurfaceView)findViewById(R.id.paintView);
+       // sfvTrack.setZOrderOnTop(true);    // necessary
+       // SurfaceHolder sfhTrackHolder = sfvTrack.getHolder();
+       // sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -165,12 +173,22 @@ public class DrawingBoardView extends View {
 
 
         mPath.lineTo(mX, mY);
-        Spell result= Element.findClosestElement(mPath);
+        if(currentSpell==null){
+            Spell result= Element.findClosestElement(mPath);
 
-        if(result!=null) {
-            DrawnPath fp = new DrawnPath(SpellQuality.colorFromQuality(result.getQuality()), emboss, blur, strokeWidth, result.getPath());
-            paths.add(fp);
+            if(result!=null) {
+                Path test=Util.pathFromVectorArray( Util.pathToVectorArray(result.getPath(),2));
+
+                DrawnPath fp = new DrawnPath(SpellQuality.colorFromQuality(result.getQuality()), emboss, blur, strokeWidth, test);
+                paths.add(fp);
+            }
+
+            currentSpell= result;
+        }else{
+            currentSpell= currentSpell.getSpellSpecialization(mPath);
+            currentSpell=null;
         }
+
     }
 
     @Override
